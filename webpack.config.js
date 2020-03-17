@@ -1,9 +1,11 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin') // 输出工具
+const CleanWebpackPlugin = require('clean-webpack-plugin') // 清除掉dist文件
 
 module.exports = {
     entry: './src/main.js',
     output: {
-      filename: 'bundle.js',
+      filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist')
     },
     module: {
@@ -22,5 +24,11 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugin:[
+      new CleanWebpackPlugin(['dist']),
+      new HtmlWebpackPlugin({
+        title: 'Output Management'
+      })
+    ]
 }
