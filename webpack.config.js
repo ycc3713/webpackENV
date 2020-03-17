@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin') // 输出工具
-const { CleanWebpackPlugin } = require('clean-webpack-plugin') // 清除掉dist文件
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin') // 清除掉dist文件
+const webpack = require('webpack')
 
 module.exports = {
     entry: './src/main.js',
@@ -27,9 +28,19 @@ module.exports = {
         ]
     },
     plugins:[
-      new CleanWebpackPlugin(),
+      new webpack.LoaderOptionsPlugin({
+        options: {
+          devServe: {
+            contentBase: './dist',
+            port: 8080,
+            autoOpenBrowser: true,
+          }
+        }
+      }),
+      // new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         title: 'Output Management'
       })
-    ]
+    ],
+
 }
