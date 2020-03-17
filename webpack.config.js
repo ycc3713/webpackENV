@@ -34,6 +34,7 @@ module.exports = {
             contentBase: './dist',
             port: 8080,
             autoOpenBrowser: true,
+            hot: true // 热替换
           }
         }
       }),
