@@ -4,14 +4,15 @@
   "description": "learning webpack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ycc3713/webpackENV.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "ycc",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ycc3713/webpackENV/issues"
