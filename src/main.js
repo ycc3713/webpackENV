@@ -1,10 +1,15 @@
-import { funca } from './func.js'
-var a = 123
-console.log(123)
-var b = 789
-var c = a + b
-console.log(c)
-funca()
-var element = document.createElement('div')
-element.innerText = 'hello world'
-document.body.appendChild(element)
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})
