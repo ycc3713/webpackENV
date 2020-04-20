@@ -101,7 +101,21 @@ module.exports = {
                     'postcss-loader', // 在解析css之前 加上这个loader作用给样式加上前缀。ps:-websit-transform...。并在目录中新建postcss.config.js配置文件
                     'less-loader'
                 ]
-            }
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                include: [resolve('src')],
+                exclude: [resolve('static'), '/nodemodules/'],
+                options: {
+                    presets: [ // 大的语法插件
+                        '@babel/preset-env'
+                    ],
+                    plugins:[ // 配置各别语法小插件
+                        '@babel/plugin-proposal-class-properties'
+                    ]
+                }
+            },
         ]
     },
 

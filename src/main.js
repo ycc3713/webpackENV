@@ -4,3 +4,10 @@ console.log('webpack --config webpack.config.js 按照webpack.config.js配置文
 (() => {
     console.log('es6的箭头函数，通过babel转换为es5的语法')
 })()
+
+class A {
+    a=1
+}
+
+let a_new = new A()
+console.log(a_new)
