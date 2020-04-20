@@ -112,7 +112,9 @@ module.exports = {
                         '@babel/preset-env'
                     ],
                     plugins:[ // 配置各别语法小插件
-                        '@babel/plugin-proposal-class-properties'
+                        '@babel/plugin-proposal-class-properties' // 处理类 语法
+                        ["@babel/plugin-proposal-decorators", { "legacy": true }], // 这两个处理装饰器语法  可以到babel官网看
+                        ["@babel/plugin-proposal-class-properties", { "loose" : true }]
                     ]
                 }
             },
