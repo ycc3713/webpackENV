@@ -84,7 +84,7 @@ module.exports = {
                         }
                     },
                     'css-loader', // 从下往上执行，先解析css 再使用style-loader插入css代码
-                    'postcss-loader'
+                    'postcss-loader' // 在解析css之前 加上这个loader作用给样式加上前缀。ps:-websit-transform...。并在目录中新建postcss.config.js配置文件
                 ]
             },
             {
