@@ -29,17 +29,21 @@ module.exports = {
     },
     devtool:'cheap-module-source-map', // 只能定位到行 产生单独文件。还有其他选项看官网
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.vue', '.json'], // 一次解析 先找js然后vue然后json
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
-        }
+        },
+        module:[path.resolve('node_modules')], // 直接去node_modules中找模块就不会一级一级向上找
     },
     devServe: { // 开发服务器的配置
         port: 3000,
         compress: true,
         progress: true,
-        contentBase: './dist'
+        contentBase: './dist',
+        proxy:{
+
+        }
     },
     external: { // 生产环境引cdn 防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖
         vue: 'Vue',
