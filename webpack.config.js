@@ -36,6 +36,14 @@ module.exports = {
         progress: true,
         contentBase: './dist'
     },
+    external:{ // 生产环境引cdn 防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖
+        vue: 'Vue',
+        axios: 'axios',
+        'vue-router': 'VueRouter',
+        echarts: 'echarts',
+        nprogress: 'NProgress',
+        vuex: 'Vuex'
+    },
     optimization: { // 压缩优化项
         minimizer: [
             new UglifyJsPlugin({
@@ -106,15 +114,15 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: [resolve('src')],
-                exclude: [resolve('static'), '/nodemodules/'],
+                exclude: '/node_modules/',
                 options: {
                     presets: [ // 大的语法插件
                         '@babel/preset-env'
                     ],
                     plugins:[ // 配置各别语法小插件
-                        '@babel/plugin-proposal-class-properties' // 处理类 语法
                         ["@babel/plugin-proposal-decorators", { "legacy": true }], // 这两个处理装饰器语法  可以到babel官网看
-                        ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+                        ["@babel/plugin-proposal-class-properties", { "loose" : true }], // 处理类  顺序不能变
+                        "@babel/plugin-transform-runtime", 
                     ]
                 }
             },
