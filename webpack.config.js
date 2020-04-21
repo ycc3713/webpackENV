@@ -6,6 +6,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css样�
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin') // 使用OptimizeCSSAssetsPlugin只能压缩css而js会覆盖为不压缩。所有使用这个插件。terset-webpack-plugin插件也可以
 
+const CleanWebpackPlugin = require('clean-webpack-plugin') // 每次打包自动删除掉原文件
+// const CopyWebpackPlugin = require('copy-webpack-plugin') // 拷贝文件到dist里边 
+const webpack = require('webpack')
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -80,6 +83,8 @@ module.exports = {
             filename: 'main.css',
             chunkFilename: 'main.css'
         }),
+        new CleanWebpackPlugin(),
+        new webpack.BannerPlugin('版权声明') // webpack内置的插件 打包出来的头部加里边的文字
     ],
     module: {
         rules: [ // loader的特点 希望单一  
