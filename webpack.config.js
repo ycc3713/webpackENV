@@ -27,21 +27,21 @@ module.exports = {
         //   : config.dev.assetsPublicPath
         // publicPath:'https://xxx'  公共路径 在加上这个路径就会在应用时统一加上https://xxx路径 
     },
-    devtool:'cheap-module-source-map', // 只能定位到行 产生单独文件。还有其他选项看官网
+    devtool: 'cheap-module-source-map', // 只能定位到行 产生单独文件。还有其他选项看官网
     resolve: {
         extensions: ['.js', '.vue', '.json'], // 一次解析 先找js然后vue然后json
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
         },
-        module:[path.resolve('node_modules')], // 直接去node_modules中找模块就不会一级一级向上找
+        module: [path.resolve('node_modules')], // 直接去node_modules中找模块就不会一级一级向上找
     },
     devServe: { // 开发服务器的配置
         port: 3000,
         compress: true,
         progress: true,
         contentBase: './dist',
-        proxy:{
+        proxy: {
 
         }
     },
@@ -72,6 +72,9 @@ module.exports = {
 
     },
     plugins: [ // 数组存放所有的webpack插件
+        new webpack.DefinePlugin({ // 内置定义环境变量的插件
+            DEV:JSON.stringify('dev') // 添加DEV的变量  可以在代码中判断 if (DEV == 'dev')....
+        }),
         new HtmlWebpackPlugin({
             template: './src/index.html', // 以src下的index.html为打包模板
             filename: 'index.html', // 打包模板后生成的文件名称
@@ -147,8 +150,8 @@ module.exports = {
                     loader: 'url-loader',
                     options: { // 小于8192的会转成字符串放到打包的img文件下
                         limit: 8192,
-                        outputPath:'/img/',
-                        publicPath:'' // 只有图片会加上路径别的不会
+                        outputPath: '/img/',
+                        publicPath: '' // 只有图片会加上路径别的不会
                     }
                 }]
             }
